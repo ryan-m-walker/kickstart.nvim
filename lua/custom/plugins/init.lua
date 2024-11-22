@@ -130,35 +130,41 @@ return {
       },
     },
   },
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    version = '*',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    cmd = 'Neotree',
-    keys = {
-      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
-    },
-    opts = {
-      filesystem = {
-        window = {
-          mappings = {
-            ['\\'] = 'close_window',
-          },
-        },
-      },
-    },
-    config = function(_, opts)
-      require('neo-tree').setup(opts)
-      -- Make Neo-tree background transparent
-      vim.api.nvim_set_hl(0, 'NeoTreeNormal', { bg = 'NONE', ctermbg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'NeoTreeNormalNC', { bg = 'NONE', ctermbg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'NeoTreeEndOfBuffer', { bg = 'NONE', ctermbg = 'NONE' })
-    end,
-  },
+  -- {
+  -- 'nvim-neo-tree/neo-tree.nvim',
+  -- version = '*',
+  -- dependencies = {
+  --   'nvim-lua/plenary.nvim',
+  --   'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+  --   'MunifTanjim/nui.nvim',
+  -- },
+  -- cmd = 'Neotree',
+  -- keys = {
+  --   { '<leader>e', ':Neotree focus<CR>', desc = 'NeoTree focus current file', silent = true },
+  --   { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+  -- },
+  -- opts = {
+  --   filesystem = {
+  --     filtered_items = {
+  --       visible = true, -- This is what you want: If you set this to `true`, all "hide" just mean "dimmed out"
+  --       hide_dotfiles = false,
+  --       hide_gitignored = true,
+  --     },
+  --     window = {
+  --       mappings = {
+  --         ['\\'] = 'close_window',
+  --       },
+  --     },
+  --   },
+  -- },
+  --   config = function(_, opts)
+  --     require('neo-tree').setup(opts)
+  --     -- Make Neo-tree background transparent
+  --     vim.api.nvim_set_hl(0, 'NeoTreeNormal', { bg = 'NONE', ctermbg = 'NONE' })
+  --     vim.api.nvim_set_hl(0, 'NeoTreeNormalNC', { bg = 'NONE', ctermbg = 'NONE' })
+  --     vim.api.nvim_set_hl(0, 'NeoTreeEndOfBuffer', { bg = 'NONE', ctermbg = 'NONE' })
+  --   end,
+  -- },
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -214,9 +220,127 @@ return {
   },
 
   {
-      'andrew-george/telescope-themes',
-      config = function()
-          require('telescope').load_extension('themes')
+    'andrew-george/telescope-themes',
+    config = function()
+      require('telescope').load_extension 'themes'
+    end,
+  },
+
+  { -- Github Copilot
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = function()
+      require('copilot').setup {
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+          keymap = {
+            jump_prev = '[[',
+            jump_next = ']]',
+            accept = '<CR>',
+            refresh = 'gr',
+            open = '<M-CR>',
+          },
+          layout = {
+            position = 'bottom',
+            ratio = 0.4,
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = '<M-l>',
+            accept_word = '<M-w>',
+            accept_line = '<M-]>',
+            next = '<M-]>',
+            prev = '<M-[>',
+            dismiss = '<C-]>',
+          },
+        },
+        filetypes = {
+          yaml = false,
+          markdown = false,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ['.'] = false,
+        },
+      }
+
+      -- hide copilot suggestions when cmp menu is open
+      -- to prevent suggestion duplicates
+      local cmp_status_ok, cmp = pcall(require, 'cmp')
+      if cmp_status_ok then
+        cmp.event:on('menu_opened', function()
+          vim.b.copilot_suggestion_hidden = true
+        end)
+
+        cmp.event:on('menu_closed', function()
+          vim.b.copilot_suggestion_hidden = false
+        end)
       end
-  }
+    end,
+  },
+
+  { -- File explorer
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '\\', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle NvimTree', silent = true },
+    },
+    opts = {
+      sort_by = 'case_sensitive',
+      view = {
+        width = 30,
+      },
+      renderer = {
+        group_empty = true,
+        icons = {
+          show = {
+            file = true,
+            folder = true,
+            folder_arrow = true,
+            git = true,
+          },
+        },
+      },
+      filters = {
+        dotfiles = false,
+      },
+      git = {
+        enable = true,
+        ignore = false,
+      },
+      actions = {
+        open_file = {
+          quit_on_open = false,
+          window_picker = {
+            enable = true,
+          },
+        },
+      },
+      update_focused_file = {
+        enable = true,
+        update_root = false,
+      },
+    },
+    config = function(_, opts)
+      -- disable netrw at the very start of your init.lua
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+
+      require('nvim-tree').setup(opts)
+
+      -- Make nvim-tree background transparent
+      vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE', ctermbg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { bg = 'NONE', ctermbg = 'NONE' })
+    end,
+  },
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 }

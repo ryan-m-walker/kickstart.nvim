@@ -574,7 +574,7 @@ require('lazy').setup({
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
           -- Show hover diagnostic information
-          map('<leader>l', vim.diagnostic.open_float, 'Show [L]ine Diagnostic')
+          map('<leader>ld', vim.diagnostic.open_float, 'Show [L]ine [D]iagnostic')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -1062,6 +1062,7 @@ require('lazy').setup({
 })
 
 require 'custom.init'
+require 'current-theme'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

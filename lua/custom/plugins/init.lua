@@ -212,4 +212,11 @@ return {
       vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { desc = 'Go to buffer 9' })
     end,
   },
+
+  {
+      'andrew-george/telescope-themes',
+      config = function()
+          require('telescope').load_extension('themes')
+      end
+  }
 }

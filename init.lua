@@ -424,16 +424,20 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>sr', builtin.registers, { desc = '[S]earch [R]egisters' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Git related searches
-      vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = '[G]it [C]ommits' })
-      vim.keymap.set('n', '<leader>gbc', builtin.git_bcommits, { desc = '[G]it [B]uffer [C]ommits' })
+      vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = '[G]it [c]ommits' })
+      vim.keymap.set('n', '<leader>gC', builtin.git_bcommits, { desc = '[G]it buffer [C]ommits' })
       vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = '[G]it [B]ranches' })
-      vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = '[G]it [S]tatus' })
-      vim.keymap.set('n', '<leader>gS', builtin.git_stash, { desc = '[G]it [S]ash' })
+      vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = '[G]it [s]tatus' })
+      vim.keymap.set('n', '<leader>gS', builtin.git_stash, { desc = '[G]it [S]tash' })
+
+      vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { desc = '[L]SP [R]eferences' })
+      vim.keymap.set('n', '<leader>ls', builtin.lsp_references, { desc = '[L]SP [S]ymbols' })
+      vim.keymap.set('n', '<leader>ld', builtin.lsp_references, { desc = '[L]SP [D]iagnostics' })
 
       -- themes
       vim.keymap.set('n', '<leader>th', ':Telescope themes<CR>', { noremap = true, silent = true, desc = 'Theme Switcher' })

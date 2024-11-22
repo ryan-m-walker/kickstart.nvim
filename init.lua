@@ -1064,6 +1064,41 @@ require('lazy').setup({
     },
   },
 })
+-- Function to get project root directory
+local function get_project_root()
+  -- Try to find git directory
+  local current_dir = vim.fn.expand '%:p:h'
+  local git_root = vim.fn.systemlist('git -C ' .. vim.fn.shellescape(current_dir) .. ' rev-parse --show-toplevel')[1]
+
+  if vim.v.shell_error == 0 and git_root then
+    return git_root
+  end
+
+  -- Fallback to current working directory if not in git repo
+  return vim.fn.getcwd()
+end
+
+-- Function to get relative filepath from project root
+local function get_relative_filepath()
+  local full_path = vim.fn.expand '%:p'
+  local root = get_project_root()
+
+  -- Remove root path from full path to get relative path
+  local relative_path = full_path:sub(#root + 2) -- +2 to account for trailing slash
+
+  return relative_path
+end
+
+-- Create the Filepath command
+vim.api.nvim_create_user_command('Filepath', function()
+  local filepath = get_relative_filepath()
+
+  -- Copy to clipboard
+  vim.fn.setreg('+', filepath)
+
+  -- Echo the path
+  vim.notify('Filepath copied to clipboard: ' .. filepath, vim.log.levels.INFO)
+end, {})
 
 require 'custom.init'
 require 'current-theme'

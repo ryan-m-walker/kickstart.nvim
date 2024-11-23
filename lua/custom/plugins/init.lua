@@ -51,7 +51,7 @@ return {
       local dashboard = require 'alpha.themes.dashboard'
 
       dashboard.section.header.val = {
-        [[                               __                ]],
+        [[                               _                ]],
         [[  ___     ___    ___   __  __ /\_\    ___ ___   ]],
         [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\ ]],
         [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],

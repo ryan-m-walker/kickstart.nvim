@@ -187,10 +187,11 @@ return {
           end,
           offsets = {
             {
-              filetype = 'neo-tree',
+              filetype = 'NvimTree',
               text = 'File Explorer',
               highlight = 'Directory',
               separator = true,
+              text_align = 'left',
             },
           },
         },

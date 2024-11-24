@@ -963,7 +963,14 @@ require('lazy').setup({
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
 
-      require('mini.comment').setup()
+      require('mini.comment').setup {
+        mappings = {
+          comment = '<leader>/',
+          comment_line = '<leader>/',
+          comment_visual = '<leader>/',
+          textobject = '<leader>/',
+        },
+      }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --

@@ -440,4 +440,6 @@ return {
       }
     end,
   },
+
+  { 'trevorhauter/gitportal.nvim' },
 }

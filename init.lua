@@ -650,6 +650,9 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
+        graphql = {
+          filetypes = { 'graphql', 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+        },
         -- pyright = {},
         rust_analyzer = {
           settings = {

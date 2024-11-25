@@ -398,7 +398,6 @@ return {
       }
     end,
   },
-
   { 'trevorhauter/gitportal.nvim' },
   require 'custom.plugins.alpha-vim',
 }

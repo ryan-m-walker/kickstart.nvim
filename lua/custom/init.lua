@@ -17,5 +17,6 @@ end)
 
 require('colorizer').setup()
 
--- delete all buffers
-vim.api.nvim_create_user_command('Bda', 'bufdo bd', {})
+-- Buffer deletion keymaps
+vim.keymap.set('n', '<leader>x', ':bd<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>X', ':bufdo bd<CR>', { noremap = true, silent = true })

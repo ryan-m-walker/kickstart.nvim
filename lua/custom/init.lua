@@ -16,3 +16,6 @@ vim.keymap.set('n', '<leader>ig', function()
 end)
 
 require('colorizer').setup()
+
+-- delete all buffers
+vim.api.nvim_create_user_command('Bda', 'bufdo bd', {})

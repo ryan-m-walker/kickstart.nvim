@@ -93,55 +93,55 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
-  { -- Bufferline for buffer tabs
-    'akinsho/bufferline.nvim',
-    version = '*',
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-      local bufferline = require 'bufferline'
-      bufferline.setup {
-        options = {
-          mode = 'buffers', -- tabs or buffers
-          separator_style = 'thin',
-          diagnostics = 'nvim_lsp',
-          diagnostics_indicator = function(count, level)
-            local icon = level:match 'error' and ' ' or ' '
-            return ' ' .. icon .. count
-          end,
-          offsets = {
-            {
-              filetype = 'NvimTree',
-              text = 'File Explorer',
-              highlight = 'Directory',
-              separator = true,
-              text_align = 'left',
-            },
-          },
-        },
-      }
-
-      -- Navigate buffers
-      vim.keymap.set('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>', { desc = 'Next buffer tab' })
-      vim.keymap.set('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Previous buffer tab' })
-      vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close buffer' })
-      vim.keymap.set('n', '<leader>X', '<cmd>bdelete!<CR>', { desc = 'Force close buffer' })
-
-      -- Move buffers
-      vim.keymap.set('n', '<leader>bl', '<cmd>BufferLineMoveNext<CR>', { desc = 'Move buffer right' })
-      vim.keymap.set('n', '<leader>bh', '<cmd>BufferLineMovePrev<CR>', { desc = 'Move buffer left' })
-
-      -- Go to buffer
-      vim.keymap.set('n', '<leader>1', '<cmd>BufferLineGoToBuffer 1<CR>', { desc = 'Go to buffer 1' })
-      vim.keymap.set('n', '<leader>2', '<cmd>BufferLineGoToBuffer 2<CR>', { desc = 'Go to buffer 2' })
-      vim.keymap.set('n', '<leader>3', '<cmd>BufferLineGoToBuffer 3<CR>', { desc = 'Go to buffer 3' })
-      vim.keymap.set('n', '<leader>4', '<cmd>BufferLineGoToBuffer 4<CR>', { desc = 'Go to buffer 4' })
-      vim.keymap.set('n', '<leader>5', '<cmd>BufferLineGoToBuffer 5<CR>', { desc = 'Go to buffer 5' })
-      vim.keymap.set('n', '<leader>6', '<cmd>BufferLineGoToBuffer 6<CR>', { desc = 'Go to buffer 6' })
-      vim.keymap.set('n', '<leader>7', '<cmd>BufferLineGoToBuffer 7<CR>', { desc = 'Go to buffer 7' })
-      vim.keymap.set('n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<CR>', { desc = 'Go to buffer 8' })
-      vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { desc = 'Go to buffer 9' })
-    end,
-  },
+  -- { -- Bufferline for buffer tabs
+  --   'akinsho/bufferline.nvim',
+  --   version = '*',
+  --   dependencies = 'nvim-tree/nvim-web-devicons',
+  --   config = function()
+  --     local bufferline = require 'bufferline'
+  --     bufferline.setup {
+  --       options = {
+  --         mode = 'buffers', -- tabs or buffers
+  --         separator_style = 'thin',
+  --         diagnostics = 'nvim_lsp',
+  --         diagnostics_indicator = function(count, level)
+  --           local icon = level:match 'error' and ' ' or ' '
+  --           return ' ' .. icon .. count
+  --         end,
+  --         offsets = {
+  --           {
+  --             filetype = 'NvimTree',
+  --             text = 'File Explorer',
+  --             highlight = 'Directory',
+  --             separator = true,
+  --             text_align = 'left',
+  --           },
+  --         },
+  --       },
+  --     }
+  --
+  --     -- Navigate buffers
+  --     vim.keymap.set('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>', { desc = 'Next buffer tab' })
+  --     vim.keymap.set('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', { desc = 'Previous buffer tab' })
+  --     vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close buffer' })
+  --     vim.keymap.set('n', '<leader>X', '<cmd>bdelete!<CR>', { desc = 'Force close buffer' })
+  --
+  --     -- Move buffers
+  --     vim.keymap.set('n', '<leader>bl', '<cmd>BufferLineMoveNext<CR>', { desc = 'Move buffer right' })
+  --     vim.keymap.set('n', '<leader>bh', '<cmd>BufferLineMovePrev<CR>', { desc = 'Move buffer left' })
+  --
+  --     -- Go to buffer
+  --     vim.keymap.set('n', '<leader>1', '<cmd>BufferLineGoToBuffer 1<CR>', { desc = 'Go to buffer 1' })
+  --     vim.keymap.set('n', '<leader>2', '<cmd>BufferLineGoToBuffer 2<CR>', { desc = 'Go to buffer 2' })
+  --     vim.keymap.set('n', '<leader>3', '<cmd>BufferLineGoToBuffer 3<CR>', { desc = 'Go to buffer 3' })
+  --     vim.keymap.set('n', '<leader>4', '<cmd>BufferLineGoToBuffer 4<CR>', { desc = 'Go to buffer 4' })
+  --     vim.keymap.set('n', '<leader>5', '<cmd>BufferLineGoToBuffer 5<CR>', { desc = 'Go to buffer 5' })
+  --     vim.keymap.set('n', '<leader>6', '<cmd>BufferLineGoToBuffer 6<CR>', { desc = 'Go to buffer 6' })
+  --     vim.keymap.set('n', '<leader>7', '<cmd>BufferLineGoToBuffer 7<CR>', { desc = 'Go to buffer 7' })
+  --     vim.keymap.set('n', '<leader>8', '<cmd>BufferLineGoToBuffer 8<CR>', { desc = 'Go to buffer 8' })
+  --     vim.keymap.set('n', '<leader>9', '<cmd>BufferLineGoToBuffer 9<CR>', { desc = 'Go to buffer 9' })
+  --   end,
+  -- },
   { -- Github Copilot
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
@@ -204,60 +204,60 @@ return {
     end,
   },
 
-  { -- File explorer
-    'nvim-tree/nvim-tree.lua',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    keys = {
-      { '\\', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle NvimTree', silent = true },
-    },
-    opts = {
-      sort_by = 'case_sensitive',
-      view = {
-        width = 30,
-      },
-      renderer = {
-        group_empty = true,
-        icons = {
-          show = {
-            file = true,
-            folder = true,
-            folder_arrow = true,
-            git = true,
-          },
-        },
-      },
-      filters = {
-        dotfiles = false,
-      },
-      git = {
-        enable = true,
-        ignore = false,
-      },
-      actions = {
-        open_file = {
-          quit_on_open = false,
-          window_picker = {
-            enable = true,
-          },
-        },
-      },
-      update_focused_file = {
-        enable = true,
-        update_root = false,
-      },
-    },
-    config = function(_, opts)
-      -- disable netrw at the very start of your init.lua
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-
-      require('nvim-tree').setup(opts)
-
-      -- Make nvim-tree background transparent
-      vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE', ctermbg = 'NONE' })
-      vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { bg = 'NONE', ctermbg = 'NONE' })
-    end,
-  },
+  -- { -- File explorer
+  --   'nvim-tree/nvim-tree.lua',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   keys = {
+  --     { '\\', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle NvimTree', silent = true },
+  --   },
+  --   opts = {
+  --     sort_by = 'case_sensitive',
+  --     view = {
+  --       width = 30,
+  --     },
+  --     renderer = {
+  --       group_empty = true,
+  --       icons = {
+  --         show = {
+  --           file = true,
+  --           folder = true,
+  --           folder_arrow = true,
+  --           git = true,
+  --         },
+  --       },
+  --     },
+  --     filters = {
+  --       dotfiles = false,
+  --     },
+  --     git = {
+  --       enable = true,
+  --       ignore = false,
+  --     },
+  --     actions = {
+  --       open_file = {
+  --         quit_on_open = false,
+  --         window_picker = {
+  --           enable = true,
+  --         },
+  --       },
+  --     },
+  --     update_focused_file = {
+  --       enable = true,
+  --       update_root = false,
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     -- disable netrw at the very start of your init.lua
+  --     vim.g.loaded_netrw = 1
+  --     vim.g.loaded_netrwPlugin = 1
+  --
+  --     require('nvim-tree').setup(opts)
+  --
+  --     -- Make nvim-tree background transparent
+  --     vim.api.nvim_set_hl(0, 'NvimTreeNormal', { bg = 'NONE', ctermbg = 'NONE' })
+  --     vim.api.nvim_set_hl(0, 'NvimTreeEndOfBuffer', { bg = 'NONE', ctermbg = 'NONE' })
+  --   end,
+  -- },
   { -- Oil file explorer
     'stevearc/oil.nvim',
     opts = {

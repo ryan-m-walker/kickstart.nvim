@@ -401,5 +401,11 @@ return {
   { 'trevorhauter/gitportal.nvim' },
   { 'norcalli/nvim-colorizer.lua' },
   { 'EdenEast/nightfox.nvim' },
+  {
+    'folke/ts-comments.nvim',
+    opts = {},
+    event = 'VeryLazy',
+    enabled = vim.fn.has 'nvim-0.10.0' == 1,
+  },
   require 'custom.plugins.alpha-vim',
 }

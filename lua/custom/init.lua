@@ -14,3 +14,5 @@ end)
 vim.keymap.set('n', '<leader>ig', function()
   gitportal.open_file_in_neovim()
 end)
+
+require('colorizer').setup()

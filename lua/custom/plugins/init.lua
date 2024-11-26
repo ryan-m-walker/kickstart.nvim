@@ -326,7 +326,7 @@ return {
       use_default_keymaps = true,
       view_options = {
         -- Show files and directories that start with "."
-        show_hidden = false,
+        show_hidden = true,
         -- This function defines what is considered a "hidden" file
         is_hidden_file = function(name, bufnr)
           return vim.startswith(name, '.')
@@ -399,5 +399,7 @@ return {
     end,
   },
   { 'trevorhauter/gitportal.nvim' },
+  { 'norcalli/nvim-colorizer.lua' },
+  { 'EdenEast/nightfox.nvim' },
   require 'custom.plugins.alpha-vim',
 }

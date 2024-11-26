@@ -18,4 +18,4 @@ end)
 require('colorizer').setup()
 
 -- delete all buffers
-vim.api.nvim_create_user_command('bda', 'bufdo bd', {})
+vim.api.nvim_create_user_command('Bda', 'bufdo bd', {})

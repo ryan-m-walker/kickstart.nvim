@@ -28,3 +28,8 @@ vim.keymap.set('n', '<leader>m', function()
   -- Move content from specified register to default register
   vim.fn.setreg('"', vim.fn.getreg(char))
 end, { desc = "[M]ove register [Name]'s content to default register" })
+
+-- Window split keymaps
+vim.keymap.set('n', '<leader>wh', ':split<CR>', { noremap = true, silent = true, desc = '[W]indow split [H]orizontal' })
+vim.keymap.set('n', '<leader>wv', ':vsplit<CR>', { noremap = true, silent = true, desc = '[W]indow split [V]ertical' })
+require('transparent').setup()

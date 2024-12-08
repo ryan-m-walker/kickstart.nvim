@@ -103,6 +103,12 @@ vim.opt.number = true
 -- Enable relative line numbers to help with jumping
 vim.opt.relativenumber = true
 
+-- Set tab width to 4 spaces
+vim.opt.tabstop = 4 -- Width of tab character
+vim.opt.softtabstop = 4 -- Fine-tunes amount of whitespace to be inserted
+vim.opt.shiftwidth = 4 -- Size of indentation
+vim.opt.expandtab = true -- Convert tabs to spaces
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
@@ -724,7 +730,7 @@ require('lazy').setup({
         filetypes = { 'typescriptreact', 'javascriptreact' },
       }
 
-      lspconfig.relay_lsp.setup {}
+      -- lspconfig.relay_lsp.setup {}
 
       lspconfig.eslint.setup {
         on_attach = function(_, bufnr)
@@ -866,22 +872,22 @@ require('lazy').setup({
           --  This will expand snippets if the LSP sent a snippet.
           ['<C-y>'] = cmp.mapping.confirm { select = true },
 
-          -- Traditional completion keymaps
-          ['<CR>'] = cmp.mapping.confirm { select = true },
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
+          -- -- Traditional completion keymaps
+          -- ['<CR>'] = cmp.mapping.confirm { select = true },
+          -- ['<Tab>'] = cmp.mapping(function(fallback)
+          --   if cmp.visible() then
+          --     cmp.select_next_item()
+          --   else
+          --     fallback()
+          --   end
+          -- end, { 'i', 's' }),
+          -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+          --   if cmp.visible() then
+          --     cmp.select_prev_item()
+          --   else
+          --     fallback()
+          --   end
+          -- end, { 'i', 's' }),
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
